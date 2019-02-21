@@ -4,9 +4,9 @@ public class TicTacToe {
 
 	private static final int SIZE = 3;
 
-	private char lastPlayer = '\0';
+	private char lastPlayer = 'E';
 
-	private char[][] board = { { '\0', '\0', '\0' }, { '\0', '\0', '\0' }, { '\0', '\0', '\0' } };
+	private char[][] board = { { 'E', 'E', 'E' }, { 'E', 'E', 'E' }, { 'E', 'E', 'E' } };
 
 	private void checkAxis(int axis) {
 		if (axis < 1 || axis > 3) {
@@ -34,7 +34,7 @@ public class TicTacToe {
 	private boolean isDraw() {
 		for (int i = 0; i < SIZE; i++) {
 			for (int j = 0; j < SIZE; j++) {
-				if (board[i][j] == '\0') {
+				if (board[i][j] == 'E') {
 					return false;
 				}
 			}
@@ -60,7 +60,7 @@ public class TicTacToe {
 	}
 
 	private void setBox(int x, int y, char lastPlayer) {
-		if (board[x - 1][y - 1] != '\0') {
+		if (board[x - 1][y - 1] != 'E') {
 			throw new RuntimeException("Box is occupied!");
 		} else {
 			board[x - 1][y - 1] = lastPlayer;
@@ -72,6 +72,18 @@ public class TicTacToe {
 			return 'O';
 		}
 		return 'X';
+	}
+
+	public String printBoard() {
+		String boardState = "";
+		for (int i = 0; i < SIZE; i++) {
+			for (int j = 0; j < SIZE; j++) {
+				boardState += board[i][j];
+				boardState += " ";
+			}
+			boardState += "\n\n";
+		}
+		return boardState;
 	}
 
 }
